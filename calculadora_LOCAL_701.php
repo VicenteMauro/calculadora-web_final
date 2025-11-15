@@ -18,8 +18,6 @@ switch ($op) {
   case 'division':
     if ($num2 == 0) { echo "Error: no se puede dividir entre 0"; exit; }
     $resultado = $num1 / $num2; break;
-  case 'suma':           $resultado = $num1 + $num2; break;
-  case 'resta':          $resultado = $num1 - $num2; break;
   default:
     echo "Error: operación no válida"; exit;
 }

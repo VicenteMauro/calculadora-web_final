@@ -14,10 +14,6 @@ if ($num1 === null || $num1 === false || $num2 === null || $num2 === false || !$
 }
 
 switch ($op) {
-  case 'multiplicacion': $resultado = $num1 * $num2; break;
-  case 'division':
-    if ($num2 == 0) { echo "Error: no se puede dividir entre 0"; exit; }
-    $resultado = $num1 / $num2; break;
   case 'suma':           $resultado = $num1 + $num2; break;
   case 'resta':          $resultado = $num1 - $num2; break;
   default:
