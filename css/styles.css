@@ -5,4 +5,4 @@ label { display: block; margin-top: 0.5rem; }
 input { width: 100%; padding: 0.5rem; margin-top: 0.25rem; }
 .botones { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin-top: 1rem; }
 button { padding: 0.6rem; cursor: pointer; }
-#resultado { margin-top: 1rem; font-weight: 600; }
+#resultado { text-align: center; background-color: lightgray; margin-top: 1rem; font-weight: 600; }

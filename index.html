@@ -2,16 +2,19 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Calculadora web</title>
+  <title>Calculadora Web</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <h1>Calculadora</h1>
+  <h1>Calculadora web</h1>
+
   <form action="calculadora.php" method="post" id="form-calculadora">
     <label for="num1">Número 1</label>
     <input id="num1" type="number" step="any" name="num1" required>
+
     <label for="num2">Número 2</label>
     <input id="num2" type="number" step="any" name="num2" required>
+
     <div class="botones">
       <button type="submit" name="operacion" value="suma">Sumar</button>
       <button type="submit" name="operacion" value="resta">Restar</button>
@@ -19,14 +22,35 @@
       <button type="submit" name="operacion" value="division">Dividir</button>
     </div>
   </form>
+
   <div id="resultado" aria-live="polite"></div>
+
   <script>
-    document.getElementById('form-calculadora').addEventListener('submit', async (e) => {
+    const form = document.getElementById('form-calculadora');
+    const resultadoDiv = document.getElementById('resultado');
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      
       const data = new FormData(e.target);
+    
+      data.append("operacion", e.submitter.value);
+
+      resultadoDiv.textContent = "Calculando...";
+      resultadoDiv.className = "";
+
       const res = await fetch(e.target.action, { method: 'POST', body: data });
-      document.getElementById('resultado').textContent = await res.text();
+      const json = await res.json();
+
+      if (json.error) {
+        resultadoDiv.textContent = json.error;
+        resultadoDiv.classList.add("error");
+      } else {
+        resultadoDiv.textContent = json.detalle;
+        resultadoDiv.classList.add("ok");
+      }
     });
   </script>
 </body>
 </html>
+
